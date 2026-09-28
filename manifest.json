@@ -1,1 +1,16 @@
-self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>e.respondWith(fetch(e.request)));
+{
+  "name": "LAUGH VILLAGE ULTRA",
+  "short_name": "LAUGH VILLAGE",
+  "description": "Funny memes and viral videos with 6 interactive buttons to like comment save share follow",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff7a18",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3670/3670147.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
