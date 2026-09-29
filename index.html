@@ -2,71 +2,112 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>LAUGH VILLAGE ULTRA</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:#000; font-family:Arial; overflow:hidden; }
-.feed { height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; }
-.post { height:100vh; width:100%; position:relative; scroll-snap-align:start; background:#000; }
-.post video { width:100%; height:100%; object-fit:cover; }
-.overlay { position:absolute; bottom:0; left:0; right:80px; padding:20px; color:white; background:linear-gradient(transparent, black); }
-.actions { position:absolute; right:10px; bottom:100px; display:flex; flex-direction:column; gap:20px; }
-.btn { width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,0.15); border:none; font-size:26px; color:white; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:white;font-family:Arial;overflow:hidden}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;gap:10px;padding:10px;background:rgba(0,0,0,0.8)}
+.top input{flex:1;padding:10px 15px;border-radius:20px;border:none;background:#222;color:white;outline:none}
+.feed{height:100vh;padding-top:50px;padding-bottom:70px;overflow-y:scroll;scroll-snap-type:y mandatory}
+.post{height:calc(100vh - 120px);position:relative;scroll-snap-align:start;background:#111;margin-bottom:2px}
+.post video{width:100%;height:100%;object-fit:cover}
+.info{position:absolute;bottom:0;left:0;right:70px;padding:15px;background:linear-gradient(transparent,rgba(0,0,0,0.9))}
+.actions{position:absolute;right:10px;bottom:20px;display:flex;flex-direction:column;gap:15px;align-items:center}
+.actions button{width:45px;height:45px;border-radius:50%;border:none;background:rgba(255,255,255,0.2);font-size:22px;color:white}
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:20;height:65px;background:#000;border-top:1px solid #222;display:flex;justify-content:space-around;align-items:center}
+.bottom button{background:none;border:none;color:#888;font-size:12px;display:flex;flex-direction:column;align-items:center}
+.bottom button.active{color:white}
+.plus{background:white!important;color:black!important;width:45px!important;height:32px!important;border-radius:8px!important;font-size:24px!important;font-weight:bold}
+.page{display:none;height:100vh;padding:70px 15px 80px 15px;overflow-y:auto}
+.page.active{display:block}
+.profile-top{display:flex;gap:15px;align-items:center;margin-bottom:20px}
+.avatar{width:80px;height:80px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
+.grid div{aspect-ratio:9/16;background:#222;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
 
-<div class="feed">
-
-  <div class="post">
-    <video src="videos/village1.mp4" loop muted playsinline></video>
-    <div class="overlay">
-      <h3>@laughvillageultra</h3>
-      <p>Real village life 😂 #ultra</p>
-    </div>
-    <div class="actions">
-      <button class="btn">❤️</button>
-      <button class="btn">💬</button>
-      <button class="btn">↗️</button>
-    </div>
-  </div>
-
-  <div class="post">
-    <video src="videos/village2.mp4" loop muted playsinline></video>
-    <div class="overlay">
-      <h3>@laughvillageultra</h3>
-      <p>Day 2 in village 🔥</p>
-    </div>
-    <div class="actions">
-      <button class="btn">❤️</button>
-      <button class="btn">💬</button>
-      <button class="btn">↗️</button>
-    </div>
-  </div>
-
+<div class="top">
+  <input type="text" id="search" placeholder="🔎 Search users, videos...">
 </div>
 
+<!-- HOME FEED -->
+<div class="feed" id="homePage">
+  <div class="post">
+    <video src="videos/village1.mp4" loop muted playsinline></video>
+    <div class="info"><h4>@village_king</h4><p>Real village comedy 😂 #laughvillageultra</p></div>
+    <div class="actions"><button>❤️</button><span style="font-size:11px">12K</span><button>💬</button><button>↗️</button></div>
+  </div>
+  <div class="post">
+    <video src="videos/village2.mp4" loop muted playsinline></video>
+    <div class="info"><h4>@ultra_boy</h4><p>Day 2 stronger together 🔥</p></div>
+    <div class="actions"><button>❤️</button><span>8K</span><button>💬</button><button>↗️</button></div>
+  </div>
+</div>
+
+<!-- FRIENDS PAGE -->
+<div class="page" id="friendsPage">
+  <h2>Friends 👥</h2><br>
+  <div style="display:flex;flex-direction:column;gap:15px">
+    <div style="display:flex;gap:10px;align-items:center"><div style="width:50px;height:50px;border-radius:50%;background:#333"></div><div><b>@village_king</b><br><small>Online</small></div><button style="margin-left:auto;background:#ff0050;color:white;border:none;padding:8px 15px;border-radius:5px">Follow</button></div>
+    <div style="display:flex;gap:10px;align-items:center"><div style="width:50px;height:50px;border-radius:50%;background:#333"></div><div><b>@ultra_girl</b><br><small>Active now</small></div><button style="margin-left:auto;background:#ff0050;color:white;border:none;padding:8px 15px;border-radius:5px">Follow</button></div>
+  </div>
+</div>
+
+<!-- INBOX PAGE -->
+<div class="page" id="inboxPage">
+  <h2>Inbox 💬</h2><br>
+  <p>No messages yet. Follow friends to chat!</p>
+</div>
+
+<!-- PROFILE PAGE -->
+<div class="page" id="profilePage">
+  <div class="profile-top">
+    <div class="avatar">😂</div>
+    <div><h2>Laugh Village Ultra</h2><p>@laughvillageultra</p><p><b>12</b> videos <b>5.2K</b> followers</p></div>
+  </div>
+  <button style="width:100%;padding:10px;background:#222;color:white;border:1px solid #444;border-radius:5px;margin-bottom:15px">Edit Profile</button>
+  <div class="grid">
+    <div>Video 1</div><div>Video 2</div><div>Video 3</div>
+    <div>Video 4</div><div>Video 5</div><div>Video 6</div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV LIKE TIKTOK -->
+<div class="bottom">
+  <button class="active" onclick="showPage('home')"><span style="font-size:22px">🏠</span>Home</button>
+  <button onclick="showPage('friends')"><span style="font-size:22px">👥</span>Friends</button>
+  <button class="plus" onclick="document.getElementById('file').click()">+</button>
+  <button onclick="showPage('inbox')"><span style="font-size:22px">📥</span>Inbox</button>
+  <button onclick="showPage('profile')"><span style="font-size:22px">👤</span>Profile</button>
+</div>
+
+<input type="file" id="file" accept="video/*" style="display:none" onchange="alert('Video selected! Now upload this to your videos folder on GitHub as village3.mp4')">
+
 <script>
-// ONLY ONE VIDEO PLAYS - LIKE TIKTOK
-const videos = document.querySelectorAll('video');
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      videos.forEach(v=>{ v.pause(); v.muted=true; });
-      entry.target.muted=false;
-      entry.target.play();
-    }
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('homePage').style.display='none';
+  document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));
+  if(name==='home'){ document.getElementById('homePage').style.display='block'; }
+  else { document.getElementById(name+'Page').classList.add('active'); }
+  event.currentTarget.classList.add('active');
+}
+// Only 1 video plays
+const vids=document.querySelectorAll('video');
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){ vids.forEach(v=>v.pause()); e.target.play(); e.target.muted=false; }
   });
-}, {threshold:0.8});
+},{threshold:0.7});
+vids.forEach(v=>obs.observe(v));
 
-videos.forEach(v=>observer.observe(v));
-
-// Tap to mute/unmute
-videos.forEach(v=>{
-  v.addEventListener('click', ()=>{
-    v.muted = !v.muted;
-  });
+// Search filter
+document.getElementById('search').addEventListener('input', (e)=>{
+  let q=e.target.value.toLowerCase();
+  if(q.length>0) alert('Searching for: '+q+' - you can add real search later');
 });
 </script>
 
