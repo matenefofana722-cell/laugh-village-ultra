@@ -1,181 +1,156 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>LAUGH VILLAGE ULTRA - Stronger Than TikTok</title>
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#ff7a18">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LAUGH VILLAGE ULTRA - Stronger Together</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;overflow:hidden;overscroll-behavior:none}
-header{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(to bottom,rgba(0,0,0,0.8),transparent)}
-.logo{font-weight:900;font-size:20px;letter-spacing:1px}
-.logo span{color:#ff7a18}
-.nav{font-size:20px;display:flex;gap:18px}
-#feed{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch}
-#feed::-webkit-scrollbar{display:none}
-.clip{height:100vh;width:100%;scroll-snap-align:start;position:relative;background:#000;display:flex;justify-content:center;align-items:center}
-.clip video{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
-.overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.7) 0%,transparent 40%,rgba(0,0,0,0.3) 100%);z-index:1}
-.center-heart{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:90px;color:#ff2d55;z-index:5;pointer-events:none;transition:0.3s cubic-bezier(.17,.89,.32,1.49)}
-.center-heart.show{transform:translate(-50%,-50%) scale(1)}
-.left-info{position:absolute;bottom:0;left:0;z-index:3;padding:16px;padding-bottom:35px;width:70%}
-.left-info h3{font-size:16px;margin-bottom:6px;line-height:1.3}
-.left-info p{font-size:13px;opacity:0.9}
-.user-row{display:flex;align-items:center;gap:8px;margin:10px 0}
-.avatar{width:38px;height:38px;border-radius:50%;border:2px solid #fff;background-size:cover}
-.follow{border:1px solid #fff;background:transparent;color:#fff;border-radius:15px;padding:4px 12px;font-size:12px;font-weight:bold}
-.follow.following{background:#ff7a18;border-color:#ff7a18}
-.right-actions{position:absolute;right:10px;bottom:90px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:20px}
-.action{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
-.icon-btn{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;font-size:26px;border:none;color:#fff;transition:0.2s}
-.icon-btn:active{transform:scale(0.9)}
-.icon-btn.liked{background:#ff2d55;color:white}
-.count{font-size:12px;font-weight:600}
-.progress{position:absolute;bottom:0;left:0;height:3px;background:#ff7a18;z-index:4;width:0%}
-.sound-btn{position:absolute;top:80px;right:14px;z-index:3;background:rgba(0,0,0,0.4);border:none;color:#fff;padding:8px 10px;border-radius:20px;font-size:13px}
-#commentBox{position:fixed;bottom:-100%;left:0;width:100%;height:55vh;background:#121212;border-radius:20px 20px 0 0;z-index:2000;transition:0.35s;padding:16px;overflow:auto}
-#commentBox.open{bottom:0}
-.live-btn{position:fixed;bottom:20px;right:20px;background:linear-gradient(45deg,red,#ff006a);color:#fff;padding:14px 22px;border-radius:30px;text-decoration:none;font-weight:900;z-index:999;box-shadow:0 0 20px rgba(255,0,0,0.6);animation:pulse 1.5s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,0,0,0.7)}70%{box-shadow:0 0 0 15px rgba(255,0,0,0)}100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#000; font-family: Arial, sans-serif; overflow:hidden; }
+.feed {
+  height:100vh;
+  width:100vw;
+  overflow-y:scroll;
+  scroll-snap-type: y mandatory;
+}
+.post {
+  height:100vh;
+  width:100vw;
+  position:relative;
+  scroll-snap-align:start;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.post video, .post iframe {
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  position:absolute;
+  top:0; left:0;
+}
+.overlay {
+  position:absolute;
+  bottom:0; left:0; right:60px;
+  padding:20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color:white;
+  z-index:2;
+}
+.overlay h3 { font-size:18px; margin-bottom:5px; }
+.overlay p { font-size:14px; opacity:0.9; }
+.actions {
+  position:absolute;
+  right:10px;
+  bottom:80px;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  align-items:center;
+}
+.action-btn {
+  width:50px; height:50px;
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  border:none;
+  color:white;
+}
+.action-btn:active { transform:scale(0.9); }
+.likes { color:white; font-size:12px; margin-top:-20px; font-weight:bold; }
+.top-bar {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:10;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  color:white;
+  background: linear-gradient(rgba(0,0,0,0.6), transparent);
+}
+.logo { font-weight:900; letter-spacing:1px; }
 </style>
 </head>
 <body>
-<header>
-<div class="logo">LAUGH <span>VILLAGE</span> ULTRA</div>
-<div class="nav"><i class="fa-solid fa-magnifying-glass"></i><i class="fa-regular fa-bell"></i></div>
-</header>
 
-<div id="feed">
-<div class="clip" data-id="1">
-<video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted playsinline></video>
-<div class="overlay"></div>
-<i class="fa-solid fa-heart center-heart"></i>
-<button class="sound-btn"><i class="fa-solid fa-volume-xmark"></i></button>
-<div class="right-actions">
-<div class="action"><button class="icon-btn"><img style="width:52px;height:52px;border-radius:50%;border:2px solid #fff" src="https://i.pravatar.cc/100?img=5"></button></div>
-<div class="action like-btn"><button class="icon-btn"><i class="fa-solid fa-heart"></i></button><span class="count">12.3K</span></div>
-<div class="action comment-btn"><button class="icon-btn"><i class="fa-solid fa-comment-dots"></i></button><span class="count">342</span></div>
-<div class="action share-btn"><button class="icon-btn"><i class="fa-solid fa-share"></i></button><span class="count">Share</span></div>
-<div class="action"><button class="icon-btn"><i class="fa-solid fa-bookmark"></i></button><span class="count">1.2K</span></div>
-<div class="action"><button class="icon-btn"><i class="fa-solid fa-spinner"></i></button></div>
-</div>
-<div class="left-info">
-<div class="user-row"><div class="avatar" style="background-image:url('https://i.pravatar.cc/100?img=5')"></div><b>@chief_mf8</b><button class="follow">Follow</button></div>
-<h3>When village elder tries TikTok dance for first time 😂🔥 #fyp #village</h3>
-<p>🎵 Original Sound - Laugh Village • 2.3M views</p>
-</div>
-<div class="progress"></div>
+<div class="top-bar">
+  <div class="logo">LAUGH VILLAGE ULTRA 😂</div>
+  <div>🔍</div>
 </div>
 
-<div class="clip" data-id="2">
-<video src="https://www.w3schools.com/html/movie.mp4" loop muted playsinline></video>
-<div class="overlay"></div>
-<i class="fa-solid fa-heart center-heart"></i>
-<button class="sound-btn"><i class="fa-solid fa-volume-xmark"></i></button>
-<div class="right-actions">
-<div class="action like-btn"><button class="icon-btn"><i class="fa-solid fa-heart"></i></button><span class="count">45.9K</span></div>
-<div class="action comment-btn"><button class="icon-btn"><i class="fa-solid fa-comment-dots"></i></button><span class="count">1.1K</span></div>
-<div class="action share-btn"><button class="icon-btn"><i class="fa-solid fa-share"></i></button><span class="count">Share</span></div>
-</div>
-<div class="left-info">
-<div class="user-row"><div class="avatar" style="background-image:url('https://i.pravatar.cc/100?img=8')"></div><b>@london_pepper</b><button class="follow">Follow</button></div>
-<h3>POV: You said no pepper in London kitchen 💀 London mums be like</h3>
-<p>🔥 Trending • 5.1M views</p>
-</div>
-<div class="progress"></div>
-</div>
+<div class="feed" id="feed">
 
-<div class="clip" data-id="3">
-<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" loop muted playsinline></video>
-<div class="overlay"></div>
-<i class="fa-solid fa-heart center-heart"></i>
-<div class="right-actions">
-<div class="action like-btn"><button class="icon-btn"><i class="fa-solid fa-heart"></i></button><span class="count">99K</span></div>
-<div class="action comment-btn"><button class="icon-btn"><i class="fa-solid fa-comment-dots"></i></button><span class="count">3.4K</span></div>
-<div class="action share-btn"><button class="icon-btn"><i class="fa-solid fa-share"></i></button><span class="count">Share</span></div>
-</div>
-<div class="left-info">
-<h3>🚀 UPLOAD YOUR CLIP - Be more famous than Charli D'Amelio!</h3>
-<input type="file" id="upload" accept="video/*" style="display:none">
-<button onclick="document.getElementById('upload').click()" style="background:#ff7a18;border:none;color:#fff;padding:12px 20px;border-radius:25px;font-weight:900;margin-top:8px">+ UPLOAD VIDEO</button>
-</div>
-<div class="progress"></div>
-</div>
-</div>
+  <!-- VIDEO 1 - CHANGE SRC TO YOUR VIDEO -->
+  <div class="post">
+    <video src="videos/village1.mp4" loop autoplay muted playsinline onclick="this.muted=false"></video>
+    <div class="overlay">
+      <h3>@laughvillageultra</h3>
+      <p>Real village life 😂 Day 1 - Stronger Together! #village #funny</p>
+      <p>🎵 Original Sound - Laugh Village</p>
+    </div>
+    <div class="actions">
+      <button class="action-btn" onclick="like(this)">❤️</button>
+      <span class="likes">12.5K</span>
+      <button class="action-btn">💬</button>
+      <span class="likes">892</span>
+      <button class="action-btn">↗️</button>
+      <button class="action-btn">⋯</button>
+    </div>
+  </div>
 
-<div id="commentBox">
-<div style="width:40px;height:4px;background:#444;border-radius:10px;margin:0 auto 12px"></div>
-<h3>342 Comments 🔥</h3><br>
-<p><b>@user1:</b> 😂😂😂 elder got moves!!</p><br>
-<p><b>@london_boy:</b> This is more addictive than TikTok fr</p><br>
-<p><b>@village_girl:</b> Chief M.F8 for president!!</p><br>
-<button onclick="document.getElementById('commentBox').classList.remove('open')" style="width:100%;padding:12px;background:#222;color:#fff;border:none;border-radius:10px;margin-top:20px">Close</button>
-</div>
+  <!-- VIDEO 2 - YOUTUBE EXAMPLE -->
+  <div class="post">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&loop=1&mute=1&autoplay=1" allow="autoplay"></iframe>
+    <div class="overlay">
+      <h3>@laughvillageultra</h3>
+      <p>When uncle tries TikTok dance 💀 #ultra</p>
+    </div>
+    <div class="actions">
+      <button class="action-btn" onclick="like(this)">❤️</button>
+      <span class="likes">8.2K</span>
+      <button class="action-btn">💬</button>
+      <button class="action-btn">↗️</button>
+    </div>
+  </div>
 
-<a href="live.html" class="live-btn">🔴 LIVE</a>
+  <!-- VIDEO 3 -->
+  <div class="post">
+    <video src="videos/village2.mp4" loop autoplay muted playsinline onclick="this.muted=false"></video>
+    <div class="overlay">
+      <h3>@laughvillageultra</h3>
+      <p>POV: You live in Laugh Village 😂</p>
+    </div>
+    <div class="actions">
+      <button class="action-btn" onclick="like(this)">❤️</button>
+      <span class="likes">22K</span>
+      <button class="action-btn">💬</button>
+      <button class="action-btn">↗️</button>
+    </div>
+  </div>
+
+</div>
 
 <script>
-const clips=document.querySelectorAll('.clip');
-const observer=new IntersectionObserver((entries)=>{
-entries.forEach(e=>{
-const v=e.target.querySelector('video');
-if(e.isIntersecting){v.play();updateProgress(v,e.target)}else{v.pause()}
-})
+function like(btn){
+  if(btn.innerText === '❤️'){ btn.innerText='💖'; btn.style.background='rgba(255,0,0,0.5)'; }
+  else { btn.innerText='❤️'; btn.style.background='rgba(255,255,255,0.2)'; }
+}
+// Auto play video when visible like TikTok
+const videos = document.querySelectorAll('video');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.play(); } else { e.target.pause(); }
+  });
 },{threshold:0.7});
-clips.forEach(c=>observer.observe(c));
-function updateProgress(video,clip){
-const bar=clip.querySelector('.progress');
-video.ontimeupdate=()=>{bar.style.width=(video.currentTime/video.duration*100)+'%'}
-}
-document.querySelectorAll('.clip').forEach(clip=>{
-let lastTap=0;
-clip.addEventListener('click',(e)=>{
-if(e.target.closest('.icon-btn')||e.target.closest('.follow')||e.target.closest('button'))return;
-const now=Date.now();
-if(now-lastTap<300){ // double tap
-const heart=clip.querySelector('.center-heart');
-heart.classList.add('show');setTimeout(()=>heart.classList.remove('show'),800);
-const likeBtn=clip.querySelector('.like-btn.icon-btn');
-likeBtn.classList.add('liked');
-}
-lastTap=now;
-});
-});
-document.querySelectorAll('.like-btn').forEach(b=>{
-b.addEventListener('click',()=>{
-b.querySelector('.icon-btn').classList.toggle('liked');
-let c=b.querySelector('.count');
-let num=parseFloat(c.innerText);
-if(b.querySelector('.icon-btn').classList.contains('liked')){c.innerText=(num+0.1).toFixed(1)+'K'}else{c.innerText=(num-0.1).toFixed(1)+'K'}
-if(navigator.vibrate)navigator.vibrate(50);
-});
-});
-document.querySelectorAll('.follow').forEach(b=>{
-b.addEventListener('click',()=>{b.textContent=b.textContent=='Follow'?'Following':'Follow';b.classList.toggle('following')})
-});
-document.querySelectorAll('.comment-btn').forEach(b=>{
-b.addEventListener('click',()=>{document.getElementById('commentBox').classList.add('open')})
-});
-document.querySelectorAll('.share-btn').forEach(b=>{
-b.addEventListener('click',async()=>{
-const url=location.href;
-if(navigator.share){await navigator.share({title:'Laugh Village ULTRA',url})}else{navigator.clipboard.writeText(url);alert('Link Copied! 🔥 Share everywhere: '+url)}
-});
-});
-document.querySelectorAll('.sound-btn').forEach((btn,i)=>{
-btn.addEventListener('click',()=>{
-const v=btn.parentElement.querySelector('video');
-v.muted=!v.muted;
-btn.innerHTML=v.muted?'<i class="fa-solid fa-volume-xmark"></i>':'<i class="fa-solid fa-volume-high"></i>';
-});
-});
-document.getElementById('upload').addEventListener('change',function(e){
-const file=e.target.files[0];
-if(file){const url=URL.createObjectURL(file);const feed=document.getElementById('feed');const newClip=document.createElement('div');newClip.className='clip';newClip.innerHTML=`<video src="${url}" loop muted playsinline autoplay></video><div class="overlay"></div><i class="fa-solid fa-heart center-heart"></i><div class="left-info"><h3>Your new viral clip! 🔥</h3><p>Just uploaded - Chief M.F8</p></div><div class="progress"></div>`;feed.prepend(newClip);observer.observe(newClip);alert('BOOM! Your video added - stronger than TikTok! 🔥')}
-});
+videos.forEach(v=>observer.observe(v));
 </script>
+
 </body>
 </html>
