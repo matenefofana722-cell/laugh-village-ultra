@@ -3,68 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAUGH VILLAGE ULTRA - Different</title>
+<title>LAUGH VILLAGE ULTRA</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#87CEEB;font-family:Arial;overflow:hidden}
-.top{position:fixed;top:0;left:0;right:0;z-index:10;background:#000;color:white;padding:12px;display:flex;justify-content:space-between;align-items:center}
-.village{height:100vh;padding-top:50px;padding-bottom:70px;overflow:auto;background: #8BC34A;position:relative}
-.hut{position:absolute;background:#D2691E;border:3px solid #8B4513;border-radius:15px 15px 5px 5px;width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 5px 0 #8B4513}
-.hut:active{transform:scale(0.95)}
-.hut span{font-size:30px}
-.hut p{font-size:10px;font-weight:bold;color:white;margin-top:3px;text-align:center}
-.path{position:absolute;background:#DEB887;height:20px}
-.bottom{position:fixed;bottom:0;left:0;right:0;height:65px;background:#000;display:flex;justify-content:space-around;align-items:center;z-index:10}
-.bottom button{background:none;border:none;color:#888;font-size:11px;display:flex;flex-direction:column;align-items:center}
-.bottom button.active{color:white}
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:black;z-index:100;display:none}
-.modal video{width:100%;height:100%;object-fit:cover}
-.modal-close{position:absolute;top:15px;left:15px;background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 15px;border-radius:20px;z-index:101}
+body{background:#FFF8E7;font-family:Arial}
+.header{background:#FF6B00;color:white;padding:15px;text-align:center;position:fixed;top:0;left:0;right:0;z-index:10}
+.header h1{font-size:20px}
+.feed{padding-top:70px;padding-bottom:80px}
+.card{background:white;margin:15px;border-radius:15px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1)}
+.card video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+.card-info{padding:12px}
+.card-info h3{font-size:16px}
+.card-info p{font-size:13px;color:#555;margin-top:4px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
+.bottom button{border:none;background:none;font-size:12px;color:#888}
+.bottom button.active{color:#FF6B00;font-weight:bold}
 </style>
 </head>
 <body>
 
-<div class="top">
-  <b>🏘️ LAUGH VILLAGE ULTRA</b>
-  <span>🔥 Stronger Together</span>
+<div class="header">
+  <h1>🏘️ LAUGH VILLAGE ULTRA</h1>
+  <p style="font-size:12px">Stronger Together - Real Village, Real Laughs</p>
 </div>
 
-<div class="village" id="village">
-  <div class="path" style="top:120px;left:0;right:0"></div>
-  <div class="path" style="top:250px;left:50px;width:20px;height:200px"></div>
-  
-  <div class="hut" style="top:80px;left:20px" onclick="openVideo('village1')"><span>🏠</span><p>Mama's Hut</p></div>
-  <div class="hut" style="top:80px;right:20px" onclick="openVideo('village2')"><span>🏚️</span><p>Uncle's</p></div>
-  <div class="hut" style="top:200px;left:100px" onclick="openVideo('village1')"><span>🌾</span><p>Farm Fun</p></div>
-  <div class="hut" style="top:320px;left:20px" onclick="openVideo('village2')"><span>🔥</span><p>Fire Stories</p></div>
-  <div class="hut" style="top:320px;right:20px" onclick="openVideo('village1')"><span>😂</span><p>Laugh Spot</p></div>
-  <div class="hut" style="top:450px;left:50%;transform:translateX(-50%)" onclick="openVideo('village2')"><span>👑</span><p>Chief Hut</p></div>
-</div>
+<div class="feed">
 
-<div class="modal" id="modal">
-  <button class="modal-close" onclick="closeVideo()">✕ Close</button>
-  <video id="player" controls autoplay></video>
+  <div class="card">
+    <video src="videos/village1.mp4" controls poster=""></video>
+    <div class="card-info">
+      <h3>@Mama's Hut 😂 - Morning Chaos</h3>
+      <p>Real life in the village, no filter. 12K laughs ❤️</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <video src="videos/village2.mp4" controls></video>
+    <div class="card-info">
+      <h3>@Uncle Tries Football ⚽</h3>
+      <p>He said he's Ronaldo... look what happened 💀</p>
+    </div>
+  </div>
+
 </div>
 
 <div class="bottom">
-  <button class="active">🏠<br>Map</button>
-  <button>👥<br>Village</button>
-  <button style="background:white;color:black;width:40px;height:30px;border-radius:8px;font-size:20px">+</button>
-  <button>💬<br>Talk</button>
+  <button class="active">🏠<br>Village</button>
+  <button>🔥<br>Hot Laughs</button>
+  <button style="background:#FF6B00;color:white;width:50px;height:50px;border-radius:50%;font-size:25px">+</button>
+  <button>👥<br>People</button>
   <button>👤<br>Me</button>
 </div>
-
-<script>
-function openVideo(name){
-  document.getElementById('modal').style.display='block';
-  document.getElementById('player').src='videos/'+name+'.mp4';
-  document.getElementById('player').play();
-}
-function closeVideo(){
-  document.getElementById('modal').style.display='none';
-  document.getElementById('player').pause();
-}
-</script>
 
 </body>
 </html>
