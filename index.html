@@ -1,59 +1,64 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAUGH VILLAGE ULTRA</title>
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#FFF8E7;font-family:Arial}
-.header{background:#FF6B00;color:white;padding:15px;text-align:center;position:fixed;top:0;left:0;right:0;z-index:10}
-.header h1{font-size:20px}
-.feed{padding-top:70px;padding-bottom:80px}
-.card{background:white;margin:15px;border-radius:15px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1)}
-.card video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
-.card-info{padding:12px}
-.card-info h3{font-size:16px}
-.card-info p{font-size:13px;color:#555;margin-top:4px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
-.bottom button{border:none;background:none;font-size:12px;color:#888}
-.bottom button.active{color:#FF6B00;font-weight:bold}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>🏘️ LAUGH VILLAGE ULTRA</h1>
-  <p style="font-size:12px">Stronger Together - Real Village, Real Laughs</p>
+body{background:#000;color:white;font-family:-apple-system,BlinkMacSystemFont,sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.top{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1A1A1A}
+.logo{font-family:serif;letter-spacing:2px;font-size:20px;font-weight:900}
+.stories{display:flex;gap:14px;padding:12px 16px;overflow-x:auto;border-bottom:1px solid #1A1A1A}
+.story{text-align:center;min-width:62px}
+.ring{width:62px;height:62px;border-radius:50%;padding:2px;background:linear-gradient(45deg,#6C7BFF,#0A84FF);display:flex;align-items:center;justify-content:center}
+.ring-inner{width:100%;height:100%;border-radius:50%;background:#141414;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid black}
+.feed{flex:1;overflow-y:auto}
+.post{border-bottom:1px solid #1A1A1A}
+.post-head{padding:10px 12px;display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;background:#D9A679;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.post video{width:100%;aspect-ratio:4/5;object-fit:cover;background:#111}
+.actions{padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+.left{display:flex;gap:16px;align-items:center}
+.heart{font-size:26px;cursor:pointer;transition:.15s;user-select:none}
+.heart.liked{color:#0A84FF}
+.big{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:80px;color:white;opacity:0;transition:.35s;pointer-events:none;text-shadow:0 4px 20px black}
+.big.show{transform:translate(-50%,-50%) scale(1);opacity:1}
+.vid-wrap{position:relative}
+.nav{height:60px;background:#000;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #1A1A1A}
+.plus{width:24px;height:24px;border:2px solid white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900}
+</style></head><body>
+<div class="top"><span class="logo">LAUGH VILLAGE</span><div style="display:flex;gap:14px;font-size:20px"><span>♡</span><span>✉</span></div></div>
+<div class="stories">
+<div class="story"><div class="ring"><div class="ring-inner">MA</div></div><div style="font-size:11px;margin-top:4px">Your story</div></div>
+<div class="story"><div class="ring"><div class="ring-inner" style="background:#2A2A2A">LV</div></div><div style="font-size:11px;margin-top:4px">village</div></div>
+<div class="story"><div class="ring"><div class="ring-inner" style="background:#3A2A2A">NW</div></div><div style="font-size:11px;margin-top:4px">NW10</div></div>
+<div class="story"><div class="ring"><div class="ring-inner" style="background:#1A2A3A">JD</div></div><div style="font-size:11px;margin-top:4px">jay</div></div>
 </div>
-
-<div class="feed">
-
-  <div class="card">
-    <video src="videos/village1.mp4" controls poster=""></video>
-    <div class="card-info">
-      <h3>@Mama's Hut 😂 - Morning Chaos</h3>
-      <p>Real life in the village, no filter. 12K laughs ❤️</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <video src="videos/village2.mp4" controls></video>
-    <div class="card-info">
-      <h3>@Uncle Tries Football ⚽</h3>
-      <p>He said he's Ronaldo... look what happened 💀</p>
-    </div>
-  </div>
-
-</div>
-
-<div class="bottom">
-  <button class="active">🏠<br>Village</button>
-  <button>🔥<br>Hot Laughs</button>
-  <button style="background:#FF6B00;color:white;width:50px;height:50px;border-radius:50%;font-size:25px">+</button>
-  <button>👥<br>People</button>
-  <button>👤<br>Me</button>
-</div>
-
-</body>
-</html>
+<div class="feed" id="feed"></div>
+<div class="nav"><span style="font-size:22px">⌂</span><span style="font-size:22px">⌕</span><div class="plus">+</div><span style="font-size:22px">◯</span><span style="font-size:22px">👤</span></div>
+<script>
+const posts=[
+{user:"matenefofana722",vid:"https://www.w3schools.com/html/mov_bbb.mp4",cap:"No service, still posting. #offline #village"},
+{user:"laughvillage",vid:"https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_1MB.mp4",cap:"Village nights 💙 #london"}
+];
+let html=""; posts.forEach((p,i)=>{
+html+=`
+<div class="post">
+<div class="post-head"><div class="avatar">MA</div><b style="font-size:14px">${p.user}</b><span style="margin-left:auto">•••</span></div>
+<div class="vid-wrap" ondblclick="doLike(${i})"><video id="v${i}" src="${p.vid}" autoplay muted loop playsinline></video><div class="big" id="big${i}">♥</div></div>
+<div class="actions"><div class="left">
+<span class="heart" id="h${i}" onclick="doLike(${i})">♡</span><span style="font-size:22px">💬</span><span style="font-size:22px">↗</span>
+</div><span style="font-size:22px">🔖</span></div>
+<div style="padding:0 12px 12px;font-size:13px"><b>${p.user}</b> ${p.cap}<div style="color:#888;margin-top:4px">943 likes • 31 comments</div></div>
+</div>`;
+});
+document.getElementById('feed').innerHTML=html;
+function doLike(i){
+  const h=document.getElementById('h'+i); const b=document.getElementById('big'+i);
+  const liked=h.classList.contains('liked');
+  if(!liked){ h.classList.add('liked'); h.textContent='♥'; }
+  b.classList.add('show'); setTimeout(()=>b.classList.remove('show'),700);
+}
+// mobile double tap
+let last=0; document.addEventListener('touchend', e=>{
+  const now=Date.now(); if(now-last<300){ const w=e.target.closest('.vid-wrap'); if(w){ const id=w.querySelector('video').id.replace('v',''); doLike(id); }} last=now;
+});
+</script>
+</body></html>
